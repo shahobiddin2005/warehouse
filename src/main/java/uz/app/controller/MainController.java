@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import uz.app.config.Context;
 
 @Controller
-@RequestMapping
+@RequestMapping("/")
 public class MainController {
-    @GetMapping("/**")
+    @GetMapping
     public String index() {
         if (Context.getUser() != null)return "redirect:/cabinet";
         return "index";
