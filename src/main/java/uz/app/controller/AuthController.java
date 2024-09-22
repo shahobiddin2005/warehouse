@@ -1,5 +1,6 @@
 package uz.app.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,11 @@ public class AuthController {
         return "sign-up";
     }
 
+    @GetMapping("/user-blocked")
+    private String userBlock() {
+        return "user-block";
+    }
+
     @PostMapping("/sign-up")
     private String toSignUp(@RequestParam String name, @RequestParam String surname, @RequestParam String phone, @RequestParam String password) {
         if (authService.signUp(name, surname, phone, password)) {
@@ -38,11 +44,7 @@ public class AuthController {
     }
 
     @PostMapping("/sign-in")
-    private String toSignIn(@RequestParam String phone, @RequestParam String password) {
-        if (authService.signIn(phone, password)) {
-            return "redirect:/cabinet";
-        }else {
-            return "sign-in";
-        }
+    private String toSignIn(@RequestParam String phone, @RequestParam String password, HttpServletRequest req) {
+        return authService.signIn(phone, password, req);
     }
 }

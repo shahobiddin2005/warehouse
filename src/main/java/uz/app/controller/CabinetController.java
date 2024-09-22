@@ -17,9 +17,9 @@ public class CabinetController {
             if (Context.getUser().getRole().equals(Role.ADMIN))return "admin-cabinet";
             else if (Context.getUser().getRole().equals(Role.USER))return "user-cabinet";
             else if (Context.getUser().getRole().equals(Role.COURIER))return "courier-cabinet";
-            else return "redirect:/auth";
+            else return "auth";
         }else {
-            return "redirect:/auth";
+            return "auth";
         }
     }
 }

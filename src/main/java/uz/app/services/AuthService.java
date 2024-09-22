@@ -1,5 +1,7 @@
 package uz.app.services;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.app.config.Context;
@@ -24,6 +26,7 @@ public class AuthService {
                 .password(password)
                 .role(Role.USER)
                 .status(Status.ACTIVE)
+                .hasManager(false)
                 .build();
         Optional<User> optionalUser = userRepository.findByPhone(phone);
         if (optionalUser.isPresent()) {
@@ -42,15 +45,29 @@ public class AuthService {
         return sb.toString();
     }
 
-    public boolean signIn(String phone, String password) {
+    public String  signIn(String phone, String password, HttpServletRequest req) {
         Optional<User> optionalUser = userRepository.findByPhone(phoneFormat(phone));
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (user.getPassword().equals(password)&& user.getStatus().equals(Status.ACTIVE)) {
-                Context.setUser(user);
-                return true;
+            if (user.getPassword().equals(password)) {
+                if (user.getStatus().equals(Status.ACTIVE)){
+                    Context.setUser(user);
+                    HttpSession session = req.getSession();
+                    session.setAttribute("userId", user.getId());
+                    if (user.getRole().equals(Role.ADMIN)){
+                        return "redirect:/admin";
+                    }else if (user.getRole().equals(Role.USER)){
+                        return "redirect:/user";
+                    }else {
+                        return "redirect:/courier";
+                    }
+                }else {
+                    HttpSession session = req.getSession();
+                    session.removeAttribute("userId");
+                    return "redirect:/auth/user-blocked";
+                }
             }
         }
-        return false;
+        return "redirect:/auth/sign-in";
     }
 }
