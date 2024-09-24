@@ -45,7 +45,7 @@ public class MyCustomFilter extends OncePerRequestFilter {
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             Context.setUser(user);
-            if (requestURI.contains("/cabinet")) {
+            if (requestURI.contains("/admin")) {
                 if (user.getRole().equals(Role.ADMIN)) {
                     filterChain.doFilter(request, response);
                     return;

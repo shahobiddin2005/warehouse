@@ -167,87 +167,20 @@
     </style>
 </head>
 <body>
-<nav>
-    <a class="logo" href="/">
-        <img src="/images/logo1.png" alt="logo"/>
-        <h1>WAREHOUSE</h1>
-    </a>
-    <ul>
-        <li>
-            <a href="/manager">Home</a>
-        </li>
-        <li>
-            <a href="/manager/product/add">Add Product</a>
-        </li>
-        <li>
-            <a href="/manager/input">Acceptance</a>
-        </li>
-        <li>
-            <a href="/manager/output">Release</a>
-        </li>
-        <li>
-            <a href="/manager/payment">Payment</a>
-        </li>
-        <li>
-            <a href="/manager/category/add">Add category</a>
-        </li>
-    </ul>
-    <div class="hamburger">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-    </div>
-</nav>
-<div class="menubar">
-    <ul>
-        <li>
-            <a href="/manager">Home</a>
-        </li>
-        <li>
-            <a href="/manager/product/add">Add Product</a>
-        </li>
-        <li>
-            <a href="/manager/input">Acceptance</a>
-        </li>
-        <li>
-            <a href="/manager/output">Release</a>
-        </li>
-        <li>
-            <a href="/manager/payment">Payment</a>
-        </li>
-        <li>
-            <a href="/manager/category/add">Add category</a>
-        </li>
-    </ul>
-</div>
 
 <div class="container mt-3">
 
-<!--    <table class="table table-dark table-striped">-->
-<!--        <tr>-->
-<!--            <th>#</th>-->
-<!--            <th>name</th>-->
-<!--            <th>surname</th>-->
-<!--            <th>phone</th>-->
-<!--            <th>Role</th>-->
-<!--            <th>Status</th>-->
-<!--            <th>Edit</th>-->
-<!--        </tr>-->
-<!--        <tr th:each="user : ${users}">-->
-<!--            <td th:text="${user.getId()}"></td>-->
-<!--            <td th:text="${user.getName()}"></td>-->
-<!--            <td th:text="${user.getSurname()}"></td>-->
-<!--            <td th:text="${user.getPhone()}"></td>-->
-<!--            <td th:text="${user.getRole()}"></td>-->
-<!--            <td th:text="${user.getStatus()}"></td>-->
-<!--            <td>-->
-<!--                <form action="/admin/user/set" method="get">-->
-<!--                    <input type="hidden" th:value="${user.getId()}" name="id">-->
-<!--                    <button type="submit" class="btn btn-primary">Edit</button>-->
-<!--                </form>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--    </table>-->
+        <form action="/manager/input" method="post" class="card" style="padding: 20px">
+            <div><h1>Add input</h1></div>
+            <div class="input-group mt-2">
+                <input type="text" name="name" class="form-control" placeholder="Enter category name" required>
+            </div>
+            <div class="mt-2">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+
+
 </div>
 
 
