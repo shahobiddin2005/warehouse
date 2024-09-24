@@ -57,8 +57,12 @@ public class AuthService {
                         return "redirect:/admin";
                     }else if (user.getRole().equals(Role.USER)){
                         return "redirect:/user";
-                    }else {
+                    }else if (user.getRole().equals(Role.MANAGER)){
+                        return "redirect:/manager";
+                    }else if (user.getRole().equals(Role.COURIER)){
                         return "redirect:/courier";
+                    }else {
+                        return "redirect:/home";
                     }
                 }else {
                     HttpSession session = req.getSession();
