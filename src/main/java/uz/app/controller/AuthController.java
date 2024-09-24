@@ -1,6 +1,7 @@
 package uz.app.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,13 @@ public class AuthController {
         else if (user.getRole().equals(Role.USER))return "redirect:/user";
         else if (user.getRole().equals(Role.COURIER))return "redirect:/courier";
         else if (user.getRole().equals(Role.MANAGER))return "redirect:/manager";
+        return "redirect:/auth/sign-in";
+    }
+
+    @GetMapping("/log-out")
+    private String logOut(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        session.removeAttribute("userId");
         return "redirect:/auth/sign-in";
     }
 

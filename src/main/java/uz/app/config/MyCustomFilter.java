@@ -33,7 +33,9 @@ public class MyCustomFilter extends OncePerRequestFilter {
         String userId = (String) session.getAttribute("userId");
 
         if (userId == null) {
-            if (requestURI.contains("/auth")) {
+            if (requestURI.contains("/home")) {
+                filterChain.doFilter(request, response);
+            }else if (requestURI.contains("/auth")) {
                 filterChain.doFilter(request, response);
             } else {
                 resp.sendRedirect("/auth/sign-in");
@@ -47,6 +49,27 @@ public class MyCustomFilter extends OncePerRequestFilter {
             Context.setUser(user);
             if (requestURI.contains("/admin")) {
                 if (user.getRole().equals(Role.ADMIN)) {
+                    filterChain.doFilter(request, response);
+                    return;
+                } else {
+                    resp.sendRedirect("/home");
+                }
+            }else if (requestURI.contains("/user")) {
+                if (user.getRole().equals(Role.USER)) {
+                    filterChain.doFilter(request, response);
+                    return;
+                } else {
+                    resp.sendRedirect("/home");
+                }
+            } else if (requestURI.contains("/courier")) {
+                if (user.getRole().equals(Role.COURIER)) {
+                    filterChain.doFilter(request, response);
+                    return;
+                } else {
+                    resp.sendRedirect("/home");
+                }
+            } else if (requestURI.contains("/manager")) {
+                if (user.getRole().equals(Role.MANAGER)) {
                     filterChain.doFilter(request, response);
                     return;
                 } else {
