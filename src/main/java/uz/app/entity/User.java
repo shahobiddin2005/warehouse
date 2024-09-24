@@ -32,5 +32,4 @@ public class User {
     private Role role;
     @Enumerated(EnumType.STRING)
     private Status status;
-    private Boolean hasManager;
 }

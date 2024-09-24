@@ -185,6 +185,9 @@
         <li>
             <a href="/admin/courier">Courier</a>
         </li>
+        <li>
+            <a href="/admin/warehouse">Warehouse</a>
+        </li>
     </ul>
     <div class="hamburger">
         <span class="line"></span>
@@ -206,10 +209,18 @@
         <li>
             <a href="/admin/courier">Courier</a>
         </li>
+        <li>
+            <a href="/admin/warehouse">Warehouse</a>
+        </li>
     </ul>
 </div>
 
 <div class="container mt-3">
+    <form action="/admin/warehouse/add" method="get" class="card" style="padding: 20px">
+        <div class="mt-2">
+            <button type="submit" class="btn btn-primary">Add warehouse</button>
+        </div>
+    </form>
     <table class="table table-dark table-striped">
         <tr>
             <th>#</th>
@@ -218,9 +229,7 @@
             <th>phone</th>
             <th>Role</th>
             <th>Status</th>
-            <th>Set</th>
-            <th>Block</th>
-            <th>Unblock</th>
+            <th>Edit</th>
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.getId()}"></td>

@@ -26,7 +26,6 @@ public class AuthService {
                 .password(password)
                 .role(Role.USER)
                 .status(Status.ACTIVE)
-                .hasManager(false)
                 .build();
         Optional<User> optionalUser = userRepository.findByPhone(phone);
         if (optionalUser.isPresent()) {
