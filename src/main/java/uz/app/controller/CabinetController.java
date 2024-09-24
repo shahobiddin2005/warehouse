@@ -8,7 +8,7 @@ import uz.app.config.Context;
 import uz.app.enums.Role;
 
 @Controller
-@RequestMapping("/cabinet")
+@RequestMapping("/courier")
 public class CabinetController {
     @GetMapping
     public String cabinet() {

@@ -51,4 +51,33 @@ public class AdminService {
         }
         return "redirect:/admin/warehouse";
     }
+
+    public String editWarehouse(String userId, String id) {
+        Optional<Warehouse> optionalWarehouse = warehouseRepository.findById(id);
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalWarehouse.isPresent() && optionalUser.isPresent()) {
+            Warehouse warehouse = optionalWarehouse.get();
+            User user = optionalUser.get();
+            User oldUser = warehouse.getManager();
+            oldUser.setRole(Role.USER);
+            userRepository.save(oldUser);
+            user.setRole(Role.MANAGER);
+            userRepository.save(user);
+            warehouse.setPhone(user.getPhone());
+            warehouse.setManager(user);
+            warehouseRepository.save(warehouse);
+        }
+        return "redirect:/admin/warehouse";
+    }
+
+    public String editWarehouse(String id, String name, String address) {
+        Optional<Warehouse> optionalWarehouse = warehouseRepository.findById(id);
+        if (optionalWarehouse.isPresent()) {
+            Warehouse warehouse = optionalWarehouse.get();
+            warehouse.setName(name);
+            warehouse.setAddress(address);
+            warehouseRepository.save(warehouse);
+        }
+        return "redirect:/admin/warehouse";
+    }
 }

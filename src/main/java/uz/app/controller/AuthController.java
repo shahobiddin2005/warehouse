@@ -1,11 +1,13 @@
 package uz.app.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import uz.app.config.Context;
 import uz.app.entity.User;
+import uz.app.enums.Role;
 import uz.app.services.AuthService;
 
 @Controller
@@ -16,6 +18,18 @@ public class AuthController {
     @GetMapping
     private String toAuth() {
         if (Context.getUser() != null)return "redirect:/cabinet";
+        User user = Context.getUser();
+        if (user.getRole().equals(Role.ADMIN))return "redirect:/admin";
+        else if (user.getRole().equals(Role.USER))return "redirect:/user";
+        else if (user.getRole().equals(Role.COURIER))return "redirect:/courier";
+        else if (user.getRole().equals(Role.MANAGER))return "redirect:/manager";
+        return "redirect:/auth/sign-in";
+    }
+
+    @GetMapping("/log-out")
+    private String logOut(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        session.removeAttribute("userId");
         return "redirect:/auth/sign-in";
     }
 

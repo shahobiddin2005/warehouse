@@ -240,7 +240,7 @@
             <td th:text="${warehouse.getManager().getName()}"></td>
             <td th:text="${warehouse.getBalance()}"></td>
             <td>
-                <form action="/admin/warehouse/set" method="get">
+                <form action="/admin/warehouse/edit" method="get">
                     <input type="hidden" th:value="${warehouse.getId()}" name="id">
                     <button type="submit" class="btn btn-primary">Edit</button>
                 </form>
