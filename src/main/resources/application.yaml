@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/warehouse
     username: postgres
-    password: root123
+    password: ROOT123
     driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true

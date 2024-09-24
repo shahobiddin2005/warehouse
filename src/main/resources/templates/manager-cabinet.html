@@ -174,19 +174,19 @@
     </a>
     <ul>
         <li>
-            <a href="/admin">Home</a>
+            <a href="/manager">Home</a>
         </li>
         <li>
-            <a href="/admin/user">Users</a>
+            <a href="/manager/product/add">Add Product</a>
         </li>
         <li>
-            <a href="/admin/manager">Managers</a>
+            <a href="/manager/input">Acceptance</a>
         </li>
         <li>
-            <a href="/admin/courier">Courier</a>
+            <a href="/manager/output">Release</a>
         </li>
         <li>
-            <a href="/admin/warehouse">Warehouse</a>
+            <a href="/manager/payment">Payment</a>
         </li>
     </ul>
     <div class="hamburger">
@@ -198,19 +198,19 @@
 <div class="menubar">
     <ul>
         <li>
-            <a href="/admin">Home</a>
+            <a href="/manager">Home</a>
         </li>
         <li>
-            <a href="/admin/user">Users</a>
+            <a href="/manager/product/add">Add Product</a>
         </li>
         <li>
-            <a href="/admin/manager">Managers</a>
+            <a href="/manager/input">Acceptance</a>
         </li>
         <li>
-            <a href="/admin/courier">Courier</a>
+            <a href="/manager/output">Release</a>
         </li>
         <li>
-            <a href="/admin/warehouse">Warehouse</a>
+            <a href="/manager/payment">Payment</a>
         </li>
     </ul>
 </div>
@@ -221,31 +221,31 @@
             <button type="submit" class="btn btn-primary">Add warehouse</button>
         </div>
     </form>
-    <table class="table table-dark table-striped">
-        <tr>
-            <th>#</th>
-            <th>name</th>
-            <th>address</th>
-            <th>phone</th>
-            <th>Manager name</th>
-            <th>Balance</th>
-            <th>Edit</th>
-        </tr>
-        <tr th:each="warehouse : ${warehouses}">
-            <td th:text="${warehouse.getId()}"></td>
-            <td th:text="${warehouse.getName()}"></td>
-            <td th:text="${warehouse.getAddress()}"></td>
-            <td th:text="${warehouse.getPhone()}"></td>
-            <td th:text="${warehouse.getManager().getName()}"></td>
-            <td th:text="${warehouse.getBalance()}"></td>
-            <td>
-                <form action="/admin/warehouse/set" method="get">
-                    <input type="hidden" th:value="${warehouse.getId()}" name="id">
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                </form>
-            </td>
-        </tr>
-    </table>
+<!--    <table class="table table-dark table-striped">-->
+<!--        <tr>-->
+<!--            <th>#</th>-->
+<!--            <th>name</th>-->
+<!--            <th>surname</th>-->
+<!--            <th>phone</th>-->
+<!--            <th>Role</th>-->
+<!--            <th>Status</th>-->
+<!--            <th>Edit</th>-->
+<!--        </tr>-->
+<!--        <tr th:each="user : ${users}">-->
+<!--            <td th:text="${user.getId()}"></td>-->
+<!--            <td th:text="${user.getName()}"></td>-->
+<!--            <td th:text="${user.getSurname()}"></td>-->
+<!--            <td th:text="${user.getPhone()}"></td>-->
+<!--            <td th:text="${user.getRole()}"></td>-->
+<!--            <td th:text="${user.getStatus()}"></td>-->
+<!--            <td>-->
+<!--                <form action="/admin/user/set" method="get">-->
+<!--                    <input type="hidden" th:value="${user.getId()}" name="id">-->
+<!--                    <button type="submit" class="btn btn-primary">Edit</button>-->
+<!--                </form>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
 </div>
 
 
