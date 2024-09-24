@@ -82,12 +82,11 @@ public class AdminController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("warehouse-add");
         List<User> users = userRepository.findAllByRoleAndStatus(Role.USER, Status.ACTIVE);
-        if (users.isEmpty()){
+        if (users.isEmpty()) {
             mav.setViewName("error-page");
             mav.addObject("message", "No active users");
             mav.addObject("link", "/admin");
-        }
-        else
+        } else
             mav.addObject("users", users);
         return mav;
     }
@@ -95,5 +94,26 @@ public class AdminController {
     @PostMapping("/warehouse/add")
     public String warehouseAdd(@RequestParam String user, @RequestParam String name, @RequestParam String address) {
         return adminService.addWarehouse(user, name, address);
+    }
+
+    @GetMapping("/warehouse/edit")
+    public ModelAndView warehouseEditPage(@RequestParam String id) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("warehouse-edit");
+        List<User> users = userRepository.findAllByRoleAndStatus(Role.USER, Status.ACTIVE);
+        mav.addObject("id", id);
+        mav.addObject("warehouse", warehouseRepository.findById(id).get());
+        mav.addObject("users", users);
+        return mav;
+    }
+
+    @PostMapping("/warehouse/edit")
+    public String warehouseEdit(@RequestParam String id, @RequestParam String name, @RequestParam String address) {
+        return adminService.editWarehouse(id, name, address);
+    }
+
+    @PostMapping("/warehouse/edit-manager")
+    public String warehouseEditManager(@RequestParam String user, @RequestParam String id) {
+        return adminService.editWarehouse(user, id);
     }
 }
