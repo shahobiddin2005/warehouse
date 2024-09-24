@@ -175,6 +175,16 @@
             <div class="input-group mt-2">
                 <input type="text" name="name" class="form-control" placeholder="Enter category name" required>
             </div>
+
+            <div class="mt-2">
+                <label for="user" class="form-label">Select product</label>
+                <select id="user" name="product" class="form-select" th:each="product:${products}" required>
+                    <option selected></option>
+                    <option th:value="${product.getId()}" th:text="${product.getName()}"></option>
+                </select>
+
+            </div>
+
             <div class="mt-2">
                 <button type="submit" class="btn btn-primary">Add</button>
             </div>
